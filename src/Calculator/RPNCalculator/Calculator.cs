@@ -30,7 +30,7 @@ namespace Calculator.RPNCalculator
             //        outString.Add(res);
             //        continue;
             //    }
-                
+
             //    if (sym == "(")
             //    {
             //        continue;
@@ -47,9 +47,6 @@ namespace Calculator.RPNCalculator
             //    if (op)
             //    {
             //    }
-
-
-
             //}
             return "";
         }

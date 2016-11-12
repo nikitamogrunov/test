@@ -14,11 +14,11 @@ namespace Calculator.Tests
         public void OperandExecuteTest()
         {
 
-            Operand op = new Operand((in1, in2) => { return in1 + in2.Value; });
-            Operand op2 = new Operand((in1, in2) => { return in1 - in2.Value; });
-            Operand op3 = new Operand((in1, in2) => { return in1 * in2.Value; });
-            Operand op4 = new Operand((in1, in2) => { return in1 / in2.Value; });
-            Operand op5 = new Operand((in1, in2) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(in1))); });
+            Operand op = new Operand("+", 1, (in1, in2) => { return in1 + in2.Value; });
+            Operand op2 = new Operand("-", 1, (in1, in2) => { return in1 - in2.Value; });
+            Operand op3 = new Operand("*", 2, (in1, in2) => { return in1 * in2.Value; });
+            Operand op4 = new Operand("/", 2, (in1, in2) => { return in1 / in2.Value; });
+            Operand op5 = new Operand("sin", 2, (in1, in2) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(in1))); });
 
             var result = op.Execute(4, 1);
             var result2 = op2.Execute(4, 1);
