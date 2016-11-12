@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
-    public class Calculator
+    public interface ICalculator
     {
-        public Calculator()
-        {
-
-        }
+        string Execute(string expression);
     }
 }
