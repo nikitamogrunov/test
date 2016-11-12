@@ -11,7 +11,7 @@ namespace Calculator.RPNCalculator.Addititional
     {
 
 
-        public static Queue<PNToken> Parse(List<string> expr, OperatorList opList)
+        public static Queue<PNToken> Parse(IEnumerable<string> expr, OperatorList opList)
         {
             Queue<PNToken> outString = new Queue<PNToken>();
             Stack<Operator> operatorStack = new Stack<Operator>();

@@ -8,6 +8,6 @@ namespace Calculator
 {
     public interface ICalculator
     {
-        string Execute(string expression);
+        decimal Execute(string expression);
     }
 }

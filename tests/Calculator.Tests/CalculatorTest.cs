@@ -52,6 +52,22 @@ namespace Calculator.Tests
             Assert.Equal("+", ((Operator)(res.Dequeue().Subject)).Symbol);
         }
 
+  
+        [Theory]
+        [InlineData("1+1", 2)]
+        [InlineData("(1+1)*2", 4)]
+        [InlineData("1+1*2", 3)]
+        [InlineData("0.5*4", 2)]
+        public void CalculatorExecTest(string expression, decimal result)
+        {
+            Calculator.RPNCalculator.Calculator calc = new RPNCalculator.Calculator();
+
+            //calc.Execute();
+
+            Assert.Equal(result, calc.Execute(expression));
+        }
+
+
 
     }
 }
