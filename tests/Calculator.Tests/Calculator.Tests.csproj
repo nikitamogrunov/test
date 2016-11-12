@@ -59,8 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OperandListTest.cs" />
-    <Compile Include="OperandTest.cs" />
+    <Compile Include="OperatorListTest.cs" />
+    <Compile Include="OperatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CalculatorTest.cs" />
   </ItemGroup>

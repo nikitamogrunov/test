@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 
 namespace Calculator.RPNCalculator
 {
-    public class Operand
+    public class Operator
     {
         public string Symbol { get; }
         public int Priority { get; }
+        public OperatorType OperatorType { get; }
         private readonly Func<decimal, decimal?, decimal> _function;
 
-        public Operand(string symbol, int priority, Func<decimal, decimal?, decimal> function)
+        public Operator(string symbol, int priority, OperatorType type, Func<decimal, decimal?, decimal> function = null)
         {
             _function = function;
             Symbol = symbol;
             Priority = priority;
+            OperatorType = type;
         }
 
         public decimal Execute(decimal in1, decimal? in2 = null)
         {
-            return _function(in1, in2);
+            if (_function != null)
+                return _function(in1, in2);
+            throw new InvalidOperationException("Невозможно вычислить значение для данного оператора!");
         }
-
-
-
-
 
     }
 

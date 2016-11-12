@@ -8,17 +8,17 @@ using Xunit;
 
 namespace Calculator.Tests
 {
-    public class OperandTest
+    public class OperatorTest
     {
         [Fact]
         public void OperandExecuteTest()
         {
 
-            Operand op = new Operand("+", 1, (in1, in2) => { return in1 + in2.Value; });
-            Operand op2 = new Operand("-", 1, (in1, in2) => { return in1 - in2.Value; });
-            Operand op3 = new Operand("*", 2, (in1, in2) => { return in1 * in2.Value; });
-            Operand op4 = new Operand("/", 2, (in1, in2) => { return in1 / in2.Value; });
-            Operand op5 = new Operand("sin", 2, (in1, in2) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(in1))); });
+            Operator op = new Operator("+", 1, OperatorType.Operator, (in1, in2) => { return in1 + in2.Value; });
+            Operator op2 = new Operator("-", 1, OperatorType.Operator, (in1, in2) => { return in1 - in2.Value; });
+            Operator op3 = new Operator("*", 2, OperatorType.Operator, (in1, in2) => { return in1 * in2.Value; });
+            Operator op4 = new Operator("/", 2, OperatorType.Operator, (in1, in2) => { return in1 / in2.Value; });
+            Operator op5 = new Operator("sin", 2, OperatorType.Operator, (in1, in2) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(in1))); });
 
             var result = op.Execute(4, 1);
             var result2 = op2.Execute(4, 1);
