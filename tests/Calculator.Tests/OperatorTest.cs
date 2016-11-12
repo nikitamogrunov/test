@@ -10,26 +10,39 @@ namespace Calculator.Tests
 {
     public class OperatorTest
     {
+        Stack<decimal> SetStack()
+        {
+            Stack<decimal> paramStack = new Stack<decimal>();
+            paramStack.Push(2);
+            paramStack.Push(5);
+            return paramStack;
+        }
+
         [Fact]
         public void OperandExecuteTest()
         {
 
-            Operator op = new Operator("+", 1, OperatorType.Operator, (in1, in2) => { return in1 + in2.Value; });
-            Operator op2 = new Operator("-", 1, OperatorType.Operator, (in1, in2) => { return in1 - in2.Value; });
-            Operator op3 = new Operator("*", 2, OperatorType.Operator, (in1, in2) => { return in1 * in2.Value; });
-            Operator op4 = new Operator("/", 2, OperatorType.Operator, (in1, in2) => { return in1 / in2.Value; });
-            Operator op5 = new Operator("sin", 2, OperatorType.Operator, (in1, in2) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(in1))); });
+            Operator op = new Operator("+", 1, OperatorType.Operator, 2, (param) => { return param.Pop() + param.Pop(); });
+            Operator op2 = new Operator("-", 1, OperatorType.Operator, 2, (param) => { return param.Pop() - param.Pop(); });
+            Operator op3 = new Operator("*", 2, OperatorType.Operator, 2, (param) => { return param.Pop() * param.Pop(); });
+            Operator op4 = new Operator("/", 2, OperatorType.Operator, 2, (param) => { return param.Pop() / param.Pop(); });
+            Operator op5 = new Operator("sin", 2, OperatorType.Operator, 1, (param) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(param.Pop()) * Math.PI / 180)); });
+ 
+             var result = op.Execute(SetStack());
+            var result2 = op2.Execute(SetStack());
+            var result3 = op3.Execute(SetStack());
+            var result4 = op4.Execute(SetStack());
 
-            var result = op.Execute(4, 1);
-            var result2 = op2.Execute(4, 1);
-            var result3 = op3.Execute(4, 1);
-            var result4 = op4.Execute(5, 2);
-
-            Assert.Equal(5, result);
+            Assert.Equal(7, result);
             Assert.Equal(3, result2);
-            Assert.Equal(4, result3);
+            Assert.Equal(10, result3);
             Assert.Equal(2.5m, result4);
-            Assert.Equal(0.5m, op5.Execute(30 * (decimal)Math.PI / 180));
+
+            Stack<decimal> paramStack = new Stack<decimal>();
+          
+            paramStack.Push(30);
+
+            Assert.Equal(0.5m, op5.Execute(paramStack));
 
 
         }

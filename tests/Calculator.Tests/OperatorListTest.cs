@@ -15,7 +15,7 @@ namespace Calculator.Tests
         {
             OperatorList opList = new OperatorList();
 
-            opList.Add(new Operator("(", 0, OperatorType.InBracket, null));
+            opList.Add(new Operator("(", 0, OperatorType.InBracket));
             Operator op = opList.Get("(");
          
 
@@ -34,25 +34,16 @@ namespace Calculator.Tests
 
         }
 
-        //[Fact]
-        //void HasOperatorInListTest()
-        //{
-        //    OperatorList opList = new OperatorList();
-        //    opList.Add(new Operator("(", 0, null));
-            
-        //    Assert.True(opList.HasOperator("("));
-        //    Assert.False(opList.HasOperator("+"));
-        //}
 
         [Fact]
         void AddSecondInOperatorListFailTest()
         {
             OperatorList opList = new OperatorList();
 
-            opList.Add(new Operator("(", 0, OperatorType.InBracket, null));
+            opList.Add(new Operator("(", 0, OperatorType.InBracket));
           //  opList.Add(new Operand("(", 0, null));
 
-            Assert.Throws(typeof(ArgumentException), () => opList.Add(new Operator("(", 0, OperatorType.InBracket, null)));
+            Assert.Throws(typeof(ArgumentException), () => opList.Add(new Operator("(", 0, OperatorType.InBracket)));
 
         }
 

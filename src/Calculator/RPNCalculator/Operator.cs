@@ -11,20 +11,22 @@ namespace Calculator.RPNCalculator
         public string Symbol { get; }
         public int Priority { get; }
         public OperatorType OperatorType { get; }
-        private readonly Func<decimal, decimal?, decimal> _function;
+        public int OperandCount { get; }
+        private readonly Func<Stack<decimal>, decimal> _function;
 
-        public Operator(string symbol, int priority, OperatorType type, Func<decimal, decimal?, decimal> function = null)
+        public Operator(string symbol, int priority, OperatorType type, int operandCount = 0, Func<Stack<decimal>, decimal> function = null)
         {
             _function = function;
             Symbol = symbol;
             Priority = priority;
             OperatorType = type;
+            OperandCount = operandCount;
         }
 
-        public decimal Execute(decimal in1, decimal? in2 = null)
+        public decimal Execute(Stack<decimal> param )
         {
             if (_function != null)
-                return _function(in1, in2);
+                return _function(param);
             throw new InvalidOperationException("Невозможно вычислить значение для данного оператора!");
         }
 

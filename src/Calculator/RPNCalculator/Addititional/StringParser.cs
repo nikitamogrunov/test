@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.RPNCalculator
+namespace Calculator.RPNCalculator.Addititional
 {
     public static class StringParser
     {

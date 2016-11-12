@@ -41,13 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OperatorType.cs" />
+    <Compile Include="RPNCalculator\Addititional\PNOperandToken.cs" />
+    <Compile Include="RPNCalculator\Addititional\PNOperatorToken.cs" />
     <Compile Include="RPNCalculator\Calculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RPNCalculator\Addititional\Executer.cs" />
     <Compile Include="RPNCalculator\Operator.cs" />
     <Compile Include="RPNCalculator\OperatorList.cs" />
-    <Compile Include="RPNCalculator\PostfixNotationParser.cs" />
-    <Compile Include="RPNCalculator\StringParser.cs" />
+    <Compile Include="RPNCalculator\Addititional\PNToken.cs" />
+    <Compile Include="RPNCalculator\Addititional\PostfixNotationParser.cs" />
+    <Compile Include="RPNCalculator\Addititional\StringParser.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
