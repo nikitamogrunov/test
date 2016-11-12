@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OperandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CalculatorTest.cs" />
   </ItemGroup>

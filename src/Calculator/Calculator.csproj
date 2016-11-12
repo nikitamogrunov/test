@@ -43,7 +43,6 @@
     <Compile Include="RPNCalculator\Calculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RPNCalculator\ExpressionParser.cs" />
     <Compile Include="RPNCalculator\Operand.cs" />
     <Compile Include="RPNCalculator\OperandExtensions.cs" />
     <Compile Include="RPNCalculator\StringParser.cs" />
