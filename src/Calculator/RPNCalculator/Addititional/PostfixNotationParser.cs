@@ -11,9 +11,9 @@ namespace Calculator.RPNCalculator.Addititional
     {
 
 
-        public static Queue<string> Parse(List<string> expr, OperatorList opList)
+        public static Queue<PNToken> Parse(List<string> expr, OperatorList opList)
         {
-            Queue<string> outString = new Queue<string>();
+            Queue<PNToken> outString = new Queue<PNToken>();
             Stack<Operator> operatorStack = new Stack<Operator>();
 
             foreach (var sym in expr)
@@ -22,7 +22,7 @@ namespace Calculator.RPNCalculator.Addititional
     
                 if (decimal.TryParse(sym.Replace(".", ","), NumberStyles.AllowDecimalPoint, new NumberFormatInfo() { NumberDecimalSeparator = "," }, out res))
                 {
-                    outString.Enqueue(sym);
+                    outString.Enqueue(new PNOperandToken(res));
                     continue;
                 }
 
@@ -38,13 +38,13 @@ namespace Calculator.RPNCalculator.Addititional
                             var popOperator = operatorStack.Pop();
                             while (popOperator.OperatorType != OperatorType.InBracket)
                             {
-                                outString.Enqueue(popOperator.Symbol);
+                                outString.Enqueue(new PNOperatorToken(popOperator));
                                 popOperator = operatorStack.Pop();
                             }
                             continue;
                         case OperatorType.Operator:
                             while (operatorStack.Count > 0 && op.Priority <= operatorStack.Peek().Priority)
-                                outString.Enqueue(operatorStack.Pop().Symbol);
+                                outString.Enqueue(new PNOperatorToken(operatorStack.Pop()));
                             operatorStack.Push(op);
                             continue;
                     }
@@ -54,7 +54,7 @@ namespace Calculator.RPNCalculator.Addititional
             }
             while (operatorStack.Count > 0)
             {
-                outString.Enqueue(operatorStack.Pop().Symbol);
+                outString.Enqueue(new PNOperatorToken(operatorStack.Pop()));
             }
             return outString;
         }
