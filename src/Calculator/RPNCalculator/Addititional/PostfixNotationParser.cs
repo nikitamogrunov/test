@@ -17,8 +17,9 @@ namespace Calculator.RPNCalculator.Addititional
             foreach (var sym in expr)
             {
                 decimal res;
-    
-                if (decimal.TryParse(sym.Replace(".", ","), NumberStyles.AllowDecimalPoint, new NumberFormatInfo() { NumberDecimalSeparator = "," }, out res))
+
+                if (decimal.TryParse(sym.Replace(".", ","), NumberStyles.AllowDecimalPoint,
+                    new NumberFormatInfo() { NumberDecimalSeparator = "," }, out res))
                 {
                     outString.Enqueue(new PNOperandToken(res));
                     continue;
@@ -33,12 +34,20 @@ namespace Calculator.RPNCalculator.Addititional
                             operatorStack.Push(op);
                             continue;
                         case OperatorType.OutBracket:
-                            var popOperator = operatorStack.Pop();
-                            while (popOperator.OperatorType != OperatorType.InBracket)
+                            bool inBracketFound = false;
+                            while (operatorStack.Count > 0)
                             {
-                                outString.Enqueue(new PNOperatorToken(popOperator));
-                                popOperator = operatorStack.Pop();
+                                Operator popOperator = operatorStack.Pop();
+                                if (popOperator.OperatorType != OperatorType.InBracket)
+                                    outString.Enqueue(new PNOperatorToken(popOperator));
+                                else
+                                {
+                                    inBracketFound = true;
+                                    break;
+                                }
                             }
+                            if (!inBracketFound)
+                                throw new InvalidOperationException("Несогласованные скобки в выражении!");
                             continue;
                         case OperatorType.Operator:
                             while (operatorStack.Count > 0 && op.Priority <= operatorStack.Peek().Priority)
@@ -47,11 +56,17 @@ namespace Calculator.RPNCalculator.Addititional
                             continue;
                     }
                 }
-                throw new InvalidOperationException("Недопустимое значение!");
+                else
+                {
+                    throw new InvalidOperationException(string.Format("Оператор \"{0}\" не поддерживается!", sym));
+                }
             }
             while (operatorStack.Count > 0)
             {
-                outString.Enqueue(new PNOperatorToken(operatorStack.Pop()));
+                var op = operatorStack.Pop();
+                if (op.OperatorType != OperatorType.Operator)
+                    throw new InvalidOperationException("Несогласованные скобки в выражении!");
+                outString.Enqueue(new PNOperatorToken(op));
             }
             return outString;
         }

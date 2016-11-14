@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Calculator.Tests
+namespace Calculator.Test
 {
     public class OperatorTest
     {
@@ -43,8 +43,6 @@ namespace Calculator.Tests
             paramStack.Push(30);
 
             Assert.Equal(0.5m, op5.Execute(paramStack));
-
-
         }
     }
 }

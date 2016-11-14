@@ -24,17 +24,13 @@ namespace Calculator.RPNCalculator.Addititional
                 {
                     var op = (Operator)item.Subject;
                     List<decimal> tmp = new List<decimal>(op.OperandCount);
-                    for (int i = 0; i < op.OperandCount; i++)
-                    {
-                        tmp.Add(resStack.Pop());
-                    }
-                    Stack<decimal> operandStack = new Stack<decimal>();
-                    tmp.Reverse();
-                    tmp.ForEach(e => operandStack.Push(e));
-                    resStack.Push(op.Execute(operandStack));
+                    if (resStack.Count < op.OperandCount)
+                        throw new InvalidOperationException("В выражении не хватает операндов!");
+                    resStack.Push(op.Execute(resStack));
                 }
             }
-            return resStack.Pop();
+
+            return resStack.Count > 0 ? resStack.Pop() : 0;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Calculator.Tests
+namespace Calculator.Test
 {
     public class OperatorListTest
     {
@@ -14,40 +14,25 @@ namespace Calculator.Tests
         void AddAndGetInOperatorListTest()
         {
             OperatorList opList = new OperatorList();
-
             opList.Add(new Operator("(", 0, OperatorType.InBracket));
             Operator op = opList.Get("(");
-         
-
             Assert.Equal("(", op.Symbol);
-          
-
         }
 
         [Fact]
         void GetNullFromOperatorListTest()
         {
             OperatorList opList = new OperatorList();
-
             Operator op1 = opList.Get("+");
             Assert.Null(op1);
-
         }
-
 
         [Fact]
         void AddSecondInOperatorListFailTest()
         {
             OperatorList opList = new OperatorList();
-
             opList.Add(new Operator("(", 0, OperatorType.InBracket));
-          //  opList.Add(new Operand("(", 0, null));
-
             Assert.Throws(typeof(ArgumentException), () => opList.Add(new Operator("(", 0, OperatorType.InBracket)));
-
         }
-
-     
-
     }
 }

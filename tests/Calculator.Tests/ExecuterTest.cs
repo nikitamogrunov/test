@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Calculator.Tests
+namespace Calculator.Test
 {
     public class ExecuterTest
     {
