@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39197FE7-EB55-4E18-88B9-7E0B89F4E6A2}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{50D6FA8A-CABD-43F3-A36F-1FE59ECA049F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator</RootNamespace>
-    <AssemblyName>Calculator</AssemblyName>
+    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <AssemblyName>ConsoleApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,23 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RPNCalculator\IPostfixNotationExecuter.cs" />
-    <Compile Include="RPNCalculator\IPostfixNotationParser.cs" />
-    <Compile Include="RPNCalculator\IStringSeparator.cs" />
-    <Compile Include="RPNCalculator\OperatorType.cs" />
-    <Compile Include="RPNCalculator\Addititional\PNOperandToken.cs" />
-    <Compile Include="RPNCalculator\Addititional\PNOperatorToken.cs" />
-    <Compile Include="RPNCalculator\RPNCalculator.cs" />
-    <Compile Include="ICalculator.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RPNCalculator\Addititional\PostfixNotationExecuter.cs" />
-    <Compile Include="RPNCalculator\Operator.cs" />
-    <Compile Include="RPNCalculator\OperatorList.cs" />
-    <Compile Include="RPNCalculator\Addititional\PNToken.cs" />
-    <Compile Include="RPNCalculator\Addititional\PostfixNotationParser.cs" />
-    <Compile Include="RPNCalculator\Addititional\StringSeparator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

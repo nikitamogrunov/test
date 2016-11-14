@@ -1,5 +1,5 @@
-﻿using Calculator.RPNCalculator;
-using Calculator.RPNCalculator.Addititional;
+﻿using Calculator.RPN;
+using Calculator.RPN.Addititional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Calculator.Test
             IPostfixNotationParser parser = new PostfixNotationParser();
             List<string> expr = new List<string> { "3", "+", "4" };
             var opList = new OperatorList();
-            opList.Add(new Operator("+", 1, OperatorType.Operator));
+            opList.Add(new Operator("+", 1, OperatorType.BinaryOperator));
 
             var res = parser.Parse(expr, opList);
             Assert.Equal(3m, res.Dequeue().Subject);

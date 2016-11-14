@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.RPN.Addititional
+namespace ConsoleApplication1
 {
-    public class PNOperandToken : PNToken
+    class Program
     {
-        public PNOperandToken(decimal op) : base(op)
+        static void Main(string[] args)
         {
-
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Calculator.RPNCalculator;
-using Calculator.RPNCalculator.Addititional;
+﻿using Calculator.RPN;
+using Calculator.RPN.Addititional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace Calculator.Test
         void ExecuteTest()
         {
             IPostfixNotationExecuter executer =new PostfixNotationExecuter();
-            var op = new Operator("+", 1, OperatorType.Operator, 2, (param) => { return param.Pop() + param.Pop(); });
+            var op = new Operator("+", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() + param.Pop(); });
 
             Queue<PNToken> expr = new Queue<PNToken>(new List<PNToken> { new PNOperandToken(1), new PNOperandToken(2), new PNOperatorToken(op) });
             var opList = new OperatorList();

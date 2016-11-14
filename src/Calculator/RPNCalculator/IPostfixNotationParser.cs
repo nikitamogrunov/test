@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Calculator.RPNCalculator.Addititional;
+using Calculator.RPN.Addititional;
 
-namespace Calculator.RPNCalculator
+namespace Calculator.RPN
 {
     public interface IPostfixNotationParser
     {
-        Queue<PNToken> Parse(IEnumerable<string> expr, OperatorList opList);
+        Queue<PNToken> Parse(IList<string> expr, OperatorList opList);
     }
 }

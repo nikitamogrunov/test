@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.RPNCalculator.Addititional
+namespace Calculator.RPN.Addititional
 {
     public class PostfixNotationExecuter : IPostfixNotationExecuter
     {
@@ -23,13 +23,18 @@ namespace Calculator.RPNCalculator.Addititional
                 if (item is PNOperatorToken)
                 {
                     var op = (Operator)item.Subject;
-                    List<decimal> tmp = new List<decimal>(op.OperandCount);
                     if (resStack.Count < op.OperandCount)
                         throw new InvalidOperationException("В выражении не хватает операндов!");
-                    resStack.Push(op.Execute(resStack));
+                    var opStack = new Stack<decimal>();
+                    for (int i = 0; i < op.OperandCount; i++)
+                    {
+                        opStack.Push(resStack.Pop());
+                    }
+                    resStack.Push(op.Execute(opStack));
                 }
             }
-
+            if (resStack.Count > 1)
+                throw new InvalidOperationException("В выражении не хватает операторов!");
             return resStack.Count > 0 ? resStack.Pop() : 0;
         }
     }

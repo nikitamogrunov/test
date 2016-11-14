@@ -1,7 +1,7 @@
-﻿using Calculator.RPNCalculator.Addititional;
+﻿using Calculator.RPN.Addititional;
 using System.Collections.Generic;
 
-namespace Calculator.RPNCalculator
+namespace Calculator.RPN
 {
     public interface IPostfixNotationExecuter
     {

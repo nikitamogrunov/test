@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace Calculator.RPNCalculator
+namespace Calculator.RPN
 {
     public interface IStringSeparator
     {
-        IEnumerable<string> Separate(string input);
+        IList<string> Separate(string input);
     }
 }

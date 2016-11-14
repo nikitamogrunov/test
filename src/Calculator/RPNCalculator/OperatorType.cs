@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.RPNCalculator
+namespace Calculator.RPN
 {
     public enum OperatorType
     {
         InBracket,
         OutBracket,
-        Operator
+        BinaryOperator,
+        UnaryOperator
     }
 }

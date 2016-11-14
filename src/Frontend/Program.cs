@@ -1,11 +1,9 @@
 ﻿using Calculator;
-using Calculator.RPNCalculator;
-using Calculator.RPNCalculator.Addititional;
+using Calculator.RPN;
+using Calculator.RPN.Addititional;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Frontend
 {
@@ -13,28 +11,43 @@ namespace Frontend
     {
         static void Main(string[] args)
         {
-
-
-            //List<string> expr = new List<string> { "3", "+", "4", "*", "2", "/", "(", "1", "-", "5", ")", "^", "2" };
-            //var opList = new OperatorList();
-            //opList.Add(new Operator("+", 1, OperatorType.Operator));
-            //opList.Add(new Operator("/", 2, OperatorType.Operator));
-            //opList.Add(new Operator("-", 1, OperatorType.Operator));
-            //opList.Add(new Operator("*", 2, OperatorType.Operator));
-            //opList.Add(new Operator("^", 3, OperatorType.Operator));
-            //opList.Add(new Operator("(", 0, OperatorType.InBracket));
-            //opList.Add(new Operator(")", 0, OperatorType.OutBracket));
-            IPostfixNotationExecuter executer = new PostfixNotationExecuter();
-            var op = new Operator("+", 1, OperatorType.Operator, 2, (param) => { return param.Pop() + param.Pop(); });
-
-            Queue<PNToken> expr = new Queue<PNToken>(new List<PNToken> { new PNOperandToken(1), new PNOperandToken(2), new PNOperatorToken(op) });
-            var opList = new OperatorList();
-
-            opList.Add(op);
-            decimal result = executer.Execute(expr, opList);
-
-            //  var a = PostfixNotationParser.Parse(expr, opList);
-
+            var calc = CreateCalculator();
+            Console.WriteLine("Для выхода введите Exit");
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Введите выражение:");
+                    var expression = Console.ReadLine();
+                    if (expression.ToLower() == "exit")
+                        break;
+                    Console.WriteLine("Результат выражения: {0}", calc.Execute(expression));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine("Ошибка! {0}", ex.Message);
+                }
+            }
+        }
+        private static ICalculator CreateCalculator()
+        {
+            OperatorList opList = new OperatorList();
+            opList.Add(new Operator("+", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() + param.Pop(); }));
+            opList.Add(new Operator("-", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() - param.Pop(); }));
+            opList.Add(new Operator("+", 1, OperatorType.UnaryOperator, (param) => { return param.Pop(); }));
+            opList.Add(new Operator("-", 1, OperatorType.UnaryOperator, (param) => { return -param.Pop(); }));
+            opList.Add(new Operator("*", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() * param.Pop(); }));
+            opList.Add(new Operator("/", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() / param.Pop(); }));
+            opList.Add(new Operator("sqrt", 3, OperatorType.UnaryOperator,
+                (param) => { return Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(param.Pop()))); }));
+            opList.Add(new Operator("^", 3, OperatorType.BinaryOperator,
+                (param) => { return Convert.ToDecimal(Math.Pow(Convert.ToDouble(param.Pop()), Convert.ToDouble(param.Pop()))); }));
+            opList.Add(new Operator("@", 3, OperatorType.UnaryOperator,
+             (param) => { return Convert.ToDecimal(Math.Exp(Convert.ToDouble(param.Pop()))); }));
+            opList.Add(new Operator("(", 0, OperatorType.InBracket));
+            opList.Add(new Operator(")", 0, OperatorType.OutBracket));
+            return new RPNCalculator(opList, new StringSeparator(),
+                new PostfixNotationParser(), new PostfixNotationExecuter());
         }
     }
 }

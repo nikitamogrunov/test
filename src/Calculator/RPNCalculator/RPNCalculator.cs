@@ -1,20 +1,20 @@
-﻿using Calculator.RPNCalculator.Addititional;
+﻿using Calculator.RPN.Addititional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.RPNCalculator
+namespace Calculator.RPN
 {
-    public class Calculator : ICalculator
+    public class RPNCalculator : ICalculator
     {
         private readonly OperatorList _opList;
         private readonly IStringSeparator _stringSeparator;
         private readonly IPostfixNotationParser _pnParser;
         private readonly IPostfixNotationExecuter _pnExecuter;
 
-        public Calculator(OperatorList opList, IStringSeparator stringSeparator, IPostfixNotationParser pnParser, PostfixNotationExecuter pnExecuter)
+        public RPNCalculator(OperatorList opList, IStringSeparator stringSeparator, IPostfixNotationParser pnParser, PostfixNotationExecuter pnExecuter)
         {
             _opList = opList;
             _stringSeparator = stringSeparator;

@@ -1,4 +1,4 @@
-﻿using Calculator.RPNCalculator;
+﻿using Calculator.RPN;
 using System;
 using System.Collections.Generic;
 using System.Linq;

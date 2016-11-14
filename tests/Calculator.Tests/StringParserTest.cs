@@ -1,5 +1,5 @@
-﻿using Calculator.RPNCalculator;
-using Calculator.RPNCalculator.Addititional;
+﻿using Calculator.RPN;
+using Calculator.RPN.Addititional;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace Calculator.Test
         {
             string exp = "-1 + 28*Exp(1314)/2&5";
             IStringSeparator separator = new StringSeparator();
-            Assert.Equal("-1;+;28;*;Exp;(;1314;);/;2;&;5", String.Join(";", separator.Separate(exp).ToArray()));
+            Assert.Equal("-;1;+;28;*;Exp;(;1314;);/;2;&;5", String.Join(";", separator.Separate(exp).ToArray()));
         }
     }
 }
