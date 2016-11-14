@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator
+namespace Calculator.RPNCalculator
 {
     public enum OperatorType
     {
-
         InBracket,
         OutBracket,
         Operator

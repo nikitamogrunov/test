@@ -31,12 +31,4 @@ namespace Calculator.RPNCalculator
         }
 
     }
-
-    //InBracket,
-    //    OutBracket,
-    //    Add,
-    //    Sub,
-    //    Mul,
-    //    Div,
-    //    Exp
 }

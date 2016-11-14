@@ -8,37 +8,38 @@ namespace Calculator.RPNCalculator
 {
     public class OperatorList
     {
-
-        private readonly Dictionary<string, Operator> operatorList;
+        private readonly Dictionary<string, Operator> _operatorList;
 
         public OperatorList()
         {
-            operatorList = new Dictionary<string, Operator>();
+            _operatorList = new Dictionary<string, Operator>();
         }
 
         public void Add(Operator operand)
         {
-            operatorList.Add(operand.Symbol, operand);
+            _operatorList.Add(operand.Symbol, operand);
+        }
+
+        public void Remove(string sym)
+        {
+            _operatorList.Remove(sym);
+        }
+
+        public void Remove(Operator op)
+        {
+            _operatorList.Remove(op.Symbol);
         }
 
         public Operator Get(string symbol)
         {
             try
             {
-                return operatorList[symbol];
+                return _operatorList[symbol];
             }
             catch (KeyNotFoundException)
             {
                 return null;
             }
         }
-
-        //public bool HasOperator(string symbol)
-        //{
-        //    return operatorList.ContainsKey(symbol);
-
-        //}
-
-
     }
 }

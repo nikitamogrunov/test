@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.RPNCalculator.Addititional
 {
-    public static class PostfixNotationParser
+    public class PostfixNotationParser : IPostfixNotationParser
     {
-
-
-        public static Queue<PNToken> Parse(IEnumerable<string> expr, OperatorList opList)
+        public Queue<PNToken> Parse(IEnumerable<string> expr, OperatorList opList)
         {
             Queue<PNToken> outString = new Queue<PNToken>();
             Stack<Operator> operatorStack = new Stack<Operator>();
@@ -48,7 +46,6 @@ namespace Calculator.RPNCalculator.Addititional
                             operatorStack.Push(op);
                             continue;
                     }
-
                 }
                 throw new InvalidOperationException("Недопустимое значение!");
             }

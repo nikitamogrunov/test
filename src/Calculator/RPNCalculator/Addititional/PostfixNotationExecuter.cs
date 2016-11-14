@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.RPNCalculator.Addititional
 {
-    public static class Executer
+    public class PostfixNotationExecuter : IPostfixNotationExecuter
     {
-        public static decimal Execute(Queue<PNToken> expression, OperatorList opList)
+        public decimal Execute(Queue<PNToken> expression, OperatorList opList)
         {
             Stack<decimal> resStack = new Stack<decimal>();
 

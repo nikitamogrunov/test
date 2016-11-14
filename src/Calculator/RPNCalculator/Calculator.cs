@@ -9,27 +9,22 @@ namespace Calculator.RPNCalculator
 {
     public class Calculator : ICalculator
     {
+        private readonly OperatorList _opList;
+        private readonly IStringSeparator _stringSeparator;
+        private readonly IPostfixNotationParser _pnParser;
+        private readonly IPostfixNotationExecuter _pnExecuter;
 
-        private readonly OperatorList opList;
-        public Calculator()
+        public Calculator(OperatorList opList, IStringSeparator stringSeparator, IPostfixNotationParser pnParser, PostfixNotationExecuter pnExecuter)
         {
-            opList = new OperatorList();
-            opList.Add(new Operator("+", 1, OperatorType.Operator, 2, (param) => { return param.Pop() + param.Pop(); }));
-            opList.Add(new Operator("-", 1, OperatorType.Operator, 2, (param) => { return param.Pop() - param.Pop(); }));
-            opList.Add(new Operator("*", 2, OperatorType.Operator, 2, (param) => { return param.Pop() * param.Pop(); }));
-            opList.Add(new Operator("/", 2, OperatorType.Operator, 2, (param) => { return param.Pop() / param.Pop(); }));
-            opList.Add(new Operator("(", 0, OperatorType.InBracket));
-            opList.Add(new Operator(")", 0, OperatorType.OutBracket));
-
+            _opList = opList;
+            _stringSeparator = stringSeparator;
+            _pnParser = pnParser;
+            _pnExecuter = pnExecuter;
         }
-
-
-
 
         public decimal Execute(string expression)
         {
-            return Executer.Execute(PostfixNotationParser.Parse(StringParser.Parse(expression), opList), opList);
-
+            return _pnExecuter.Execute(_pnParser.Parse(_stringSeparator.Separate(expression), _opList), _opList);
         }
 
     }

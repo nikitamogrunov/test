@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.RPNCalculator.Addititional
 {
-    public static class StringParser
+    public class StringSeparator : IStringSeparator
     {
-        public static IEnumerable<string> Parse(string input)
+        public IEnumerable<string> Separate(string input)
         {
             int pos = 0;
             input = input.Replace(" ", string.Empty);

@@ -14,13 +14,14 @@ namespace Calculator.Tests
         [Fact]
         void ExecuteTest()
         {
+            IPostfixNotationExecuter executer =new PostfixNotationExecuter();
             var op = new Operator("+", 1, OperatorType.Operator, 2, (param) => { return param.Pop() + param.Pop(); });
 
             Queue<PNToken> expr = new Queue<PNToken>(new List<PNToken> { new PNOperandToken(1), new PNOperandToken(2), new PNOperatorToken(op) });
             var opList = new OperatorList();
 
             opList.Add(op);
-            decimal result = Executer.Execute(expr, opList);
+            decimal result = executer.Execute(expr, opList);
 
             Assert.Equal(3, result);
         }

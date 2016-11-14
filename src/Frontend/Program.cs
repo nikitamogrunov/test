@@ -24,14 +24,14 @@ namespace Frontend
             //opList.Add(new Operator("^", 3, OperatorType.Operator));
             //opList.Add(new Operator("(", 0, OperatorType.InBracket));
             //opList.Add(new Operator(")", 0, OperatorType.OutBracket));
-
+            IPostfixNotationExecuter executer = new PostfixNotationExecuter();
             var op = new Operator("+", 1, OperatorType.Operator, 2, (param) => { return param.Pop() + param.Pop(); });
 
             Queue<PNToken> expr = new Queue<PNToken>(new List<PNToken> { new PNOperandToken(1), new PNOperandToken(2), new PNOperatorToken(op) });
             var opList = new OperatorList();
 
             opList.Add(op);
-            decimal result = Executer.Execute(expr, opList);
+            decimal result = executer.Execute(expr, opList);
 
             //  var a = PostfixNotationParser.Parse(expr, opList);
 
