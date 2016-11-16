@@ -14,5 +14,6 @@ namespace Calculator.RPN.Addititional
         {
             Subject = sub;
         }
+      
     }
 }

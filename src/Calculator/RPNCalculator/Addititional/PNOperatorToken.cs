@@ -12,5 +12,9 @@ namespace Calculator.RPN.Addititional
         {
             
         }
+        public override string ToString()
+        {
+            return ((Operator)Subject).Symbol;
+        }
     }
 }

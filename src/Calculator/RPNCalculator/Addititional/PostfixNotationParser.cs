@@ -9,36 +9,26 @@ namespace Calculator.RPN.Addititional
 {
     public class PostfixNotationParser : IPostfixNotationParser
     {
-        public Queue<PNToken> Parse(IList<string> expr, OperatorList opList)
+        public Queue<PNToken> Parse(IEnumerable<PNToken> expr, OperatorList opList)
         {
             Queue<PNToken> outString = new Queue<PNToken>();
             Stack<Operator> operatorStack = new Stack<Operator>();
-            bool mayNextUnary = true;
-            foreach (var sym in expr)
+            foreach (var item in expr)
             {
-
-                decimal res;
-
-                if (decimal.TryParse(sym, NumberStyles.AllowDecimalPoint,
-                    new NumberFormatInfo() { NumberDecimalSeparator = "," }, out res))
+                if (item is PNOperandToken)
                 {
-                    outString.Enqueue(new PNOperandToken(res));
-                    mayNextUnary = false;
-                    continue;
+                    outString.Enqueue(item);
                 }
-
-                Operator op = GetOperator(opList, sym, mayNextUnary);
-                
-                if (op != null)
+                else
                 {
+                    Operator op = (Operator)item.Subject;
+
                     switch (op.OperatorType)
                     {
                         case OperatorType.InBracket:
                             operatorStack.Push(op);
-                            mayNextUnary = true;
                             continue;
                         case OperatorType.OutBracket:
-                            mayNextUnary = false;
                             bool inBracketFound = false;
                             while (operatorStack.Count > 0)
                             {
@@ -56,18 +46,14 @@ namespace Calculator.RPN.Addititional
                             continue;
                         case OperatorType.BinaryOperator:
                         case OperatorType.UnaryOperator:
-                            mayNextUnary = true;
                             while (operatorStack.Count > 0 && op.Priority <= operatorStack.Peek().Priority)
                                 outString.Enqueue(new PNOperatorToken(operatorStack.Pop()));
                             operatorStack.Push(op);
                             continue;
                     }
                 }
-                else
-                {
-                    throw new InvalidOperationException(string.Format("Оператор \"{0}\" не поддерживается!", sym));
-                }
             }
+
             while (operatorStack.Count > 0)
             {
                 var op = operatorStack.Pop();
@@ -78,25 +64,6 @@ namespace Calculator.RPN.Addititional
             return outString;
         }
 
-        private Operator GetOperator(OperatorList opList, string sym, bool mayNextUnary)
-        {
-            Operator op;
-            if (opList.HasManyOverload(sym))
-            {
-                if (mayNextUnary)
-                {
-                    op = opList.GetByType(sym, OperatorType.UnaryOperator);
-                }
-                else
-                {
-                    op = opList.GetByType(sym, OperatorType.BinaryOperator);
-                }
-            }
-            else
-            {
-                op = opList.Get(sym);
-            }
-            return op;
-        }
+
     }
 }

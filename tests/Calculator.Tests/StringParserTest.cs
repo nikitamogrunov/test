@@ -14,9 +14,12 @@ namespace Calculator.Test
         [Fact]
         public void ParsingTest()
         {
-            string exp = "-1 + 28*Exp(1314)/2&5";
+            string exp = "-1 + 28*sqrt(1314)/2^5";
             IStringSeparator separator = new StringSeparator();
-            Assert.Equal("-;1;+;28;*;Exp;(;1314;);/;2;&;5", String.Join(";", separator.Separate(exp).ToArray()));
+            OperatorList opList = new OperatorList();
+            opList.AddDefaultOperators();
+            Assert.Equal("-;1;+;28;*;sqrt;(;1314;);/;2;^;5",
+                String.Join(";", separator.Separate(exp, opList).ToArray().Select(e=>e.ToString())));
         }
     }
 }

@@ -5,6 +5,6 @@ namespace Calculator.RPN
 {
     public interface IPostfixNotationParser
     {
-        Queue<PNToken> Parse(IList<string> expr, OperatorList opList);
+        Queue<PNToken> Parse(IEnumerable<PNToken> expr, OperatorList opList);
     }
 }

@@ -24,7 +24,7 @@ namespace Calculator.RPN
 
         public decimal Execute(string expression)
         {
-            return _pnExecuter.Execute(_pnParser.Parse(_stringSeparator.Separate(expression), _opList), _opList);
+            return _pnExecuter.Execute(_pnParser.Parse(_stringSeparator.Separate(expression, _opList), _opList), _opList);
         }
 
     }

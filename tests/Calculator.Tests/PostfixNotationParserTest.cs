@@ -14,10 +14,16 @@ namespace Calculator.Test
         [Fact]
         public void PostfixParserTest()
         {
+            var op = new Operator("+", 1, OperatorType.BinaryOperator);
             IPostfixNotationParser parser = new PostfixNotationParser();
-            List<string> expr = new List<string> { "3", "+", "4" };
+            List<PNToken> expr = new List<PNToken>
+            {
+                new PNOperandToken(3),
+                new PNOperatorToken(op),
+                new PNOperandToken(4)
+            };
             var opList = new OperatorList();
-            opList.Add(new Operator("+", 1, OperatorType.BinaryOperator));
+            opList.Add(op);
 
             var res = parser.Parse(expr, opList);
             Assert.Equal(3m, res.Dequeue().Subject);

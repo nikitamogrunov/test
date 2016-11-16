@@ -12,5 +12,10 @@ namespace Calculator.RPN.Addititional
         {
 
         }
+
+        public override string ToString()
+        {
+            return ((decimal)Subject).ToString();
+        }
     }
 }
