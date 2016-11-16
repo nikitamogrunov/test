@@ -19,7 +19,7 @@ namespace Calculator.RPN.Addititional
 
                 decimal res;
 
-                if (decimal.TryParse(sym.Replace(".", ","), NumberStyles.AllowDecimalPoint,
+                if (decimal.TryParse(sym, NumberStyles.AllowDecimalPoint,
                     new NumberFormatInfo() { NumberDecimalSeparator = "," }, out res))
                 {
                     outString.Enqueue(new PNOperandToken(res));

@@ -20,6 +20,7 @@ namespace Calculator.RPN.Addititional
                 {
                     for (int i = pos + 1; i < input.Length && (char.IsDigit(input[i]) || input[i] == ',' || input[i] == '.'); i++)
                         s.Append(input[i]);
+                    s = s.Replace(".", ",");
                 }
                 else
                 {

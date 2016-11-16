@@ -18,7 +18,7 @@ namespace Calculator.Test
             return paramStack;
         }
 
-        [Theory]
+        [Fact]
         public void OperandExecuteTest()
         {
             Operator op = new Operator("+", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() + param.Pop(); });
