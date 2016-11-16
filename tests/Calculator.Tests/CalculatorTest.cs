@@ -13,20 +13,7 @@ namespace Calculator.Test
         public CalculatorTest()
         {
             OperatorList opList = new OperatorList();
-            opList.Add(new Operator("+", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() + param.Pop(); }));
-            opList.Add(new Operator("-", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() - param.Pop(); }));
-            opList.Add(new Operator("+", 1, OperatorType.UnaryOperator, (param) => { return param.Pop(); }));
-            opList.Add(new Operator("-", 1, OperatorType.UnaryOperator, (param) => { return -param.Pop(); }));
-            opList.Add(new Operator("*", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() * param.Pop(); }));
-            opList.Add(new Operator("/", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() / param.Pop(); }));
-            opList.Add(new Operator("sqrt", 3, OperatorType.UnaryOperator,
-                (param) => { return Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(param.Pop()))); }));
-            opList.Add(new Operator("^", 3, OperatorType.BinaryOperator,
-                (param) => { return Convert.ToDecimal(Math.Pow(Convert.ToDouble(param.Pop()), Convert.ToDouble(param.Pop()))); }));
-            opList.Add(new Operator("@", 3, OperatorType.UnaryOperator,
-             (param) => { return Convert.ToDecimal(Math.Exp(Convert.ToDouble(param.Pop()))); }));
-            opList.Add(new Operator("(", 0, OperatorType.InBracket));
-            opList.Add(new Operator(")", 0, OperatorType.OutBracket));
+            opList.AddDefaultOperators();
             calc = new RPN.RPNCalculator(opList, new StringSeparator(),
                 new PostfixNotationParser(), new PostfixNotationExecuter());
         }

@@ -14,6 +14,26 @@ namespace Calculator.RPN
         {
             _operatorList = new List<Operator>();
         }
+        /// <summary>
+        /// Adding +, -, unary+, unary-, *, /, sqrt, ^, @ - symbolic exp, (, ).
+        /// </summary>
+        public void AddDefaultOperators()
+        {
+            _operatorList.Add(new Operator("+", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() + param.Pop(); }));
+            _operatorList.Add(new Operator("-", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() - param.Pop(); }));
+            _operatorList.Add(new Operator("+", 1, OperatorType.UnaryOperator, (param) => { return param.Pop(); }));
+            _operatorList.Add(new Operator("-", 1, OperatorType.UnaryOperator, (param) => { return -param.Pop(); }));
+            _operatorList.Add(new Operator("*", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() * param.Pop(); }));
+            _operatorList.Add(new Operator("/", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() / param.Pop(); }));
+            _operatorList.Add(new Operator("sqrt", 3, OperatorType.UnaryOperator,
+                (param) => { return Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(param.Pop()))); }));
+            _operatorList.Add(new Operator("^", 3, OperatorType.BinaryOperator,
+                (param) => { return Convert.ToDecimal(Math.Pow(Convert.ToDouble(param.Pop()), Convert.ToDouble(param.Pop()))); }));
+            _operatorList.Add(new Operator("@", 3, OperatorType.UnaryOperator,
+             (param) => { return Convert.ToDecimal(Math.Exp(Convert.ToDouble(param.Pop()))); }));
+            _operatorList.Add(new Operator("(", 0, OperatorType.InBracket));
+            _operatorList.Add(new Operator(")", 0, OperatorType.OutBracket));
+        }
 
         public void Add(Operator op)
         {
