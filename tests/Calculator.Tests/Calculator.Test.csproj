@@ -74,6 +74,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Calculator.RPN.Operators\Calculator.RPN.Operators.csproj">
+      <Project>{abd1b448-d984-4d9d-9fef-4c58b4e4aa8f}</Project>
+      <Name>Calculator.RPN.Operators</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Calculator\Calculator.csproj">
       <Project>{39197fe7-eb55-4e18-88b9-7e0b89f4e6a2}</Project>
       <Name>Calculator</Name>

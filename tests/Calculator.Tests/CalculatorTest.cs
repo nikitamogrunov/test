@@ -1,5 +1,6 @@
 ﻿using Calculator.RPN;
 using Calculator.RPN.Addititional;
+using Calculator.RPN.Operators.OperatorListExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Calculator.Test
         public CalculatorTest()
         {
             OperatorList opList = new OperatorList();
-            opList.AddDefaultOperators();
+            opList.InitWithDefaultOperators();
             calc = new RPN.RPNCalculator(opList, new StringSeparator(),
                 new PostfixNotationParser(), new PostfixNotationExecuter());
         }

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{630E032A-E169-42C2-BDC1-9D6E1D25BD26}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{ABD1B448-D984-4D9D-9FEF-4C58B4E4AA8F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frontend</RootNamespace>
-    <AssemblyName>Frontend</AssemblyName>
+    <RootNamespace>Calculator.RPN.Operators</RootNamespace>
+    <AssemblyName>Calculator.RPN.Operators</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,17 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ExpOperator.cs" />
+    <Compile Include="PowOperator.cs" />
+    <Compile Include="SqrtOperator.cs" />
+    <Compile Include="AddOperator.cs" />
+    <Compile Include="DivOperator.cs" />
+    <Compile Include="OutBracketOperator.cs" />
+    <Compile Include="InBracketOperator.cs" />
+    <Compile Include="MulOperator.cs" />
+    <Compile Include="OperatorListExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubOperator.cs" />
+    <Compile Include="UAddOperator.cs" />
+    <Compile Include="UMinusOperator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Calculator.RPN.Operators\Calculator.RPN.Operators.csproj">
-      <Project>{abd1b448-d984-4d9d-9fef-4c58b4e4aa8f}</Project>
-      <Name>Calculator.RPN.Operators</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Calculator\Calculator.csproj">
       <Project>{39197fe7-eb55-4e18-88b9-7e0b89f4e6a2}</Project>
       <Name>Calculator</Name>

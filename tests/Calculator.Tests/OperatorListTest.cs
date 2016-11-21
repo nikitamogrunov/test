@@ -1,4 +1,5 @@
 ﻿using Calculator.RPN;
+using Calculator.RPN.Operators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace Calculator.Test
         void AddAndGetInOperatorListTest()
         {
             OperatorList opList = new OperatorList();
-            opList.Add(new Operator("(", 0, OperatorType.InBracket));
-            Operator op = opList.Get("(");
-            Assert.Equal("(", op.Symbol);
+            opList.Add(new AddOperator());
+            Operator op = opList.Get("+");
+            Assert.Equal("+", op.Symbol);
         }
 
         [Fact]
@@ -31,8 +32,8 @@ namespace Calculator.Test
         void AddSecondInOperatorListFailTest()
         {
             OperatorList opList = new OperatorList();
-            opList.Add(new Operator("(", 0, OperatorType.InBracket));
-            Assert.Throws(typeof(ArgumentException), () => opList.Add(new Operator("(", 0, OperatorType.InBracket)));
+            opList.Add(new AddOperator());
+            Assert.Throws(typeof(ArgumentException), () => opList.Add(new AddOperator()));
         }
     }
 }

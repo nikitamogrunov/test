@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Calculator.RPN
 {
-    public class Operator
+    public abstract class Operator
     {
         public string Symbol { get; }
         public int Priority { get; }
         public OperatorType OperatorType { get; }
+
         public int OperandCount
         {
             get
@@ -29,21 +30,14 @@ namespace Calculator.RPN
                 return count;
             }
         }
-        private readonly Func<Stack<decimal>, decimal> _function;
 
-        public Operator(string symbol, int priority, OperatorType type, Func<Stack<decimal>, decimal> function = null)
+        public Operator(string symbol, int priority, OperatorType type)
         {
-            _function = function;
             Symbol = symbol;
             Priority = priority;
             OperatorType = type;
         }
 
-        public decimal Execute(Stack<decimal> param)
-        {
-            if (_function == null)
-                throw new InvalidOperationException("Невозможно вычислить значение для данного оператора!");
-            return _function(param);
-        }
+        public abstract decimal Execute(Stack<decimal> param);
     }
 }

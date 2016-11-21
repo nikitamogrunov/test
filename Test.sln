@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6E52E0D5-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Test", "tests\Calculator.Tests\Calculator.Test.csproj", "{6478AED2-3C84-4D31-8F6B-C8E6BE398FF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.RPN.Operators", "src\Calculator.RPN.Operators\Calculator.RPN.Operators.csproj", "{ABD1B448-D984-4D9D-9FEF-4C58B4E4AA8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{6478AED2-3C84-4D31-8F6B-C8E6BE398FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6478AED2-3C84-4D31-8F6B-C8E6BE398FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6478AED2-3C84-4D31-8F6B-C8E6BE398FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD1B448-D984-4D9D-9FEF-4C58B4E4AA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD1B448-D984-4D9D-9FEF-4C58B4E4AA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD1B448-D984-4D9D-9FEF-4C58B4E4AA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD1B448-D984-4D9D-9FEF-4C58B4E4AA8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

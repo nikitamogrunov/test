@@ -1,6 +1,7 @@
 ﻿using Calculator;
 using Calculator.RPN;
 using Calculator.RPN.Addititional;
+using Calculator.RPN.Operators.OperatorListExtension;
 using System;
 using System.Collections.Generic;
 
@@ -32,7 +33,7 @@ namespace Frontend
         private static ICalculator CreateCalculator()
         {
             OperatorList opList = new OperatorList();
-            opList.AddDefaultOperators();
+            opList.InitWithDefaultOperators();
             return new RPNCalculator(opList, new StringSeparator(),
                 new PostfixNotationParser(), new PostfixNotationExecuter());
         }

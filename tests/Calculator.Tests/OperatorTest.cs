@@ -1,4 +1,5 @@
 ﻿using Calculator.RPN;
+using Calculator.RPN.Operators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,30 +20,11 @@ namespace Calculator.Test
         }
 
         [Fact]
-        public void OperandExecuteTest()
+        public void AddOperatorExecuteTest()
         {
-            Operator op = new Operator("+", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() + param.Pop(); });
-            Operator op2 = new Operator("-", 1, OperatorType.BinaryOperator, (param) => { return param.Pop() - param.Pop(); });
-            Operator op3 = new Operator("*", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() * param.Pop(); });
-            Operator op4 = new Operator("/", 2, OperatorType.BinaryOperator, (param) => { return param.Pop() / param.Pop(); });
-            Operator op5 = new Operator("sin", 2, OperatorType.UnaryOperator, 
-                (param) => { return Convert.ToDecimal(Math.Sin(Convert.ToDouble(param.Pop()) * Math.PI / 180)); });
-
+            Operator op = new AddOperator();
             var result = op.Execute(SetStack());
-            var result2 = op2.Execute(SetStack());
-            var result3 = op3.Execute(SetStack());
-            var result4 = op4.Execute(SetStack());
-
             Assert.Equal(7, result);
-            Assert.Equal(3, result2);
-            Assert.Equal(10, result3);
-            Assert.Equal(2.5m, result4);
-
-            Stack<decimal> paramStack = new Stack<decimal>();
-
-            paramStack.Push(30);
-
-            Assert.Equal(0.5m, op5.Execute(paramStack));
         }
     }
 }
